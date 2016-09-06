@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="website">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body ng-controller="MainController">
+		<!--Slider-->
+		<!--Display slides-->
+		<div class="container slider">
+			<img ng-repeat='slide in slides' ng-hide="!isCurrentSlideIndex($index)"
+				 class="slide slide-animation nonDraggableImage" ng-src="{{slide.image}}"
+				 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"/>
+			<a class="arrow prev" href="#" ng-click="prevSlide()"></a>
+			<a class="arrow next" href="#" ng-click="nextSlide()"></a>
+			<!--Navigation menu that allows us to manipulate currentIndex-->
+			<nav class="nav">
+				<div class="wrapper">
+					<ul class="dots">
+						<li class="dot" ng-repeat="slide in slides">
+							<a href="#" ng-class="{'active': isCurrentSlideIndex($index)}"
+								ng-click="setCurrentSlideIndex($index)">
+								{{slide.description}}
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+		</div>
+	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-animate.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-touch.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+		<script src="scripts/app.js"></script>
+	</body>
+</html>
